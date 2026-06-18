@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.js", "**/*.js", "**/*.jsx", ".next/types/**/*.js", "src/mock/doctors.js", "src/logo/my-doctor.logo.jsx", "src/icons/MingcuteLinkedinFill.jsx", "src/icons/MingcuteLocationLine.jsx", "src/icons/MingcuteSearchLine.jsx", "src/icons/MingcuteStarFill.jsx", "src/icons/MingcuteTelegramFill.jsx", "src/icons/MingcuteYoutubeFill.jsx"],
+  "exclude": ["node_modules"]
+}
