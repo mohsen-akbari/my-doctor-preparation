@@ -16,8 +16,8 @@ import DoctorsProvider from "@/app/search/providers/doctors/doctors.provider";
 
 import styles from "./page.module.css";
 
-export default async function Page({ searchParams }) {
-  const defaultFilters = generateDefaultFilters(await searchParams);
+export default function Page({ searchParams }) {
+  const defaultFilters = generateDefaultFilters(searchParams);
 
   return (
     <FiltersProvider defaultFilters={defaultFilters}>

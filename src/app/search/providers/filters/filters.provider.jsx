@@ -11,7 +11,7 @@ export const FiltersContext = createContext({
 
 export default function FiltersProvider({ children, defaultFilters }) {
   const [filters, dispatchFilters] = useReducer(filtersReducer, defaultFilters);
-
+  
   return (
     <FiltersContext.Provider value={{ filters, dispatchFilters }}>
       {children}

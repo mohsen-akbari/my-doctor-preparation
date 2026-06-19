@@ -16,7 +16,6 @@ export const DoctorsContext = createContext({
 
 export default function DoctorsProvider({ children, doctors }) {
   const { filters } = useContext(FiltersContext);
-
   const [filteredDoctors, setFilteredDoctors] = useState([]);
 
   const isVisible = useCallback(
@@ -34,6 +33,16 @@ export default function DoctorsProvider({ children, doctors }) {
   useEffect(() => {
     setFilteredDoctors(doctors.filter(isVisible));
   }, [isVisible, doctors]);
+
+  // useEffect(() => {
+  //   setFilteredDoctors(sortedAsc);
+  // }, [isVisible, doctors]);
+
+  // const sortByRateAsc = (filteredDoctors) => {
+  //   return filteredDoctors.sort((a, b) => +a.averageRating - +b.averageRating);
+  // };
+
+  // const sortedAsc = sortByRateAsc([...filteredDoctors]);
 
   return (
     <DoctorsContext.Provider value={{ filteredDoctors }}>
