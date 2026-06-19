@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import { notFound } from "next/navigation";
@@ -11,9 +10,10 @@ import MingcuteStarFill from "@/icons/MingcuteStarFill";
 import { doctors } from "@/mock/doctors";
 
 import styles from "./page.module.css";
+import { promises } from "node:dns";
 
-export default function Page({ params }) {
-  const doctor = doctors.find((doctor) => params.id === doctor.id);
+export default async function Page({ params }) {
+  const doctor = await getDoctor(params.id);
 
   if (!doctor) {
     return notFound();
@@ -60,4 +60,13 @@ export default function Page({ params }) {
       </div>
     </div>
   );
+}
+
+async function getDoctor(id) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const result = doctors.find((doctor) => doctor.id === id);
+      resolve(result);
+    }, 1000);
+  });
 }
