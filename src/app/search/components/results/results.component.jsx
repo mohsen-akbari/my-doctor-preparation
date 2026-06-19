@@ -3,6 +3,7 @@
 import { useContext } from "react";
 
 import Link from "next/link";
+import Image from "next/image";
 
 import MingcuteStarFill from "@/icons/MingcuteStarFill";
 import MingcuteLocationLine from "@/icons/MingcuteLocationLine";
@@ -20,7 +21,7 @@ export default function ResultsComponent() {
         <li key={doctor.id}>
           <div className={styles.header}>
             <div className={styles.image}>
-              <img
+              <Image
                 src={`https://cdn.paziresh24.com${doctor.image}`}
                 alt="عکس پروفایل دکتر"
                 width={150}
