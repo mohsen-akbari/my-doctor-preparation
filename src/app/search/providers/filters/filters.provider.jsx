@@ -1,11 +1,8 @@
 "use client";
 
-import { createContext, Dispatch, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
-import {
-  FiltersAction,
-  filtersReducer,
-} from "@/app/search/reducers/filters.reducer";
+import { filtersReducer } from "@/app/search/reducers/filters.reducer";
 
 export const FiltersContext = createContext({
   filters: {},
