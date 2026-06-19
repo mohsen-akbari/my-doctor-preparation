@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -11,6 +11,7 @@ import { doctors } from "@/mock/doctors";
 
 import styles from "./page.module.css";
 import { promises } from "node:dns";
+import BriefComponent from "./brief.component";
 
 export default async function Page({ params }) {
   const doctor = await getDoctor(params.id);
@@ -31,7 +32,11 @@ export default async function Page({ params }) {
           />
         </div>
         <div className={styles.name}>{doctor.name}</div>
-        <div className={styles.brief}>{doctor.brief}</div>
+        <div className={styles.brief}>
+          <Suspense fallback="...">
+            <BriefComponent content={doctor.brief} />
+          </Suspense>
+        </div>
         <div className={styles.badges}>
           {doctor.badges.map((badge) => (
             <div key={badge} className={styles.badge}>
