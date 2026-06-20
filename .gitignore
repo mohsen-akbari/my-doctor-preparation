@@ -148,3 +148,6 @@ fabric.properties
 
 .idea/
 .vscode/
+.env
+
+/src/generated/prisma
