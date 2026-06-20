@@ -10,7 +10,7 @@ import MingcuteStarFill from "@/icons/MingcuteStarFill";
 import { doctors } from "@/mock/doctors";
 
 import styles from "./page.module.css";
-import { promises } from "node:dns";
+
 import BriefComponent from "./brief.component";
 
 export default async function Page({ params }) {
