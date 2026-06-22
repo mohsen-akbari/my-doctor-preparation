@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 import styles from "./header.module.css";
+import { ButtonLinkComponent } from "../button/button.component";
 
 export default function HeaderComponent() {
   const pathname = usePathname();
@@ -29,7 +30,14 @@ export default function HeaderComponent() {
           </li>
         </ul>
       </nav>
-      <button className={styles.cta}>ورود | ثبت‌نام</button>
+      <ButtonLinkComponent
+        variant="primary"
+        shape="outlined"
+        className={styles.cta}
+        href="/auth/sign-in"
+      >
+        ورود | ثبت‌نام
+      </ButtonLinkComponent>
     </header>
   );
 }

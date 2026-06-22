@@ -8,11 +8,16 @@
     "start": "next start",
     "lint": "next lint",
     "prettier:check": "prettier . --check",
-    "prettier:fix": "prettier . --write"
+    "prettier:fix": "prettier . --write",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^6.19.3",
     "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
     "next": "14.2.35",
+    "pg": "^8.22.0",
     "prettier": "^3.8.3",
     "react": "^18",
     "react-dom": "^18"
@@ -26,6 +31,6 @@
     "postcss": "^8.4.49",
     "postcss-nesting": "^13.0.1",
     "prettier": "^3.4.2",
-    "prisma": "^7.8.0"
+    "prisma": "^6.19.3"
   }
 }

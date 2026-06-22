@@ -5,18 +5,8 @@ import GlobalSearchBoxComponent from "@/components/global-search-box/global-sear
 import MyDoctorLogo from "@/logo/my-doctor.logo";
 
 import styles from "./page.module.css";
-import SelectComponent from "@/components/select/select.component";
-import { useState } from "react";
 
-const options = [
-  { value: "all", label: "فرقی نمیکنه" },
-  { value: "male", label: "آقا" },
-  { value: "female", label: "خانم" },
-];
-
-export default function Home() {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-
+export default async function Home() {
   return (
     <div className={styles.home}>
       <h1>
@@ -25,17 +15,11 @@ export default function Home() {
       </h1>
       <GlobalSearchBoxComponent />
       <div className={styles.history}>
-        <SelectComponent
-          options={options}
-          selectedOption={selectedOption}
-          onSelectedOptionChange={setSelectedOption}
-        />
-
-        {/* <div className={styles.title}>آخرین جستجوهای شما</div>
+        <div className={styles.title}>آخرین جستجوهای شما</div>
         <ul>
           <li>ارتوپد</li>
           <li>قلب و عروق</li>
-        </ul> */}
+        </ul>
       </div>
     </div>
   );
