@@ -1,5 +1,25 @@
 import { NextResponse } from "next/server";
 
+export async function parseBody(request) {
+  try {
+    const body = await request.json();
+    return [null, body];
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.name === "SyntaxError") {
+        return ["فرمت body  نادرست است.", null];
+      }
+      return [error.message, null];
+    }
+
+    if (typeof error === "string") {
+      return [error, null];
+    }
+
+    return ["خطای غیر منتظره رخ داد.", null];
+  }
+}
+
 export async function wrapWithTryCatch(callback) {
   try {
     return await callback();
