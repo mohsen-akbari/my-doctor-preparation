@@ -1,22 +1,13 @@
-// "use client";
-
 import GlobalSearchBoxComponent from "@/components/global-search-box/global-search-box.component";
 
 import MyDoctorLogo from "@/logo/my-doctor.logo";
 
 import styles from "./page.module.css";
 
-import prisma from "@/lib/prisma";
-
 export default async function Home() {
-  
- const users = await prisma.user.findMany();
-  console.log(users);
-  
-  
   return (
     <div className={styles.home}>
-      {/* <h1>
+      <h1>
         <MyDoctorLogo />
         دکتر من
       </h1>
@@ -27,12 +18,7 @@ export default async function Home() {
           <li>ارتوپد</li>
           <li>قلب و عروق</li>
         </ul>
-      </div> */}
-      {
-        users.map(user => (
-          <h1 key={user.id}>{user.name}</h1>
-        ))
-      }
+      </div>
     </div>
   );
 }

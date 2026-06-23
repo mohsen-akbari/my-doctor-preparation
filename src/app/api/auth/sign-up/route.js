@@ -1,7 +1,18 @@
 import { NextResponse } from "next/server";
 
-export function POST(request) {
-  console.log(request);
+import prisma from "@/lib/prisma";
 
-  return NextResponse.json({ message: "Hello, friend" });
+import { wrapWithTryCatch } from "@/utils/api.utils";
+
+export async function POST(request) {
+  return wrapWithTryCatch(async () => {
+    const body = await request.json();
+
+    await prisma.user.create({ data: body });
+
+    return NextResponse.json(
+      { data: null },
+      { status: 201 },
+    );
+  });
 }
