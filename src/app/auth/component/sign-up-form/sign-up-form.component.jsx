@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 import signUpImage from "@/assets/image/sign-up.webp";
 
@@ -23,6 +24,35 @@ export default function SignUpFormComponent() {
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const dto = {
+      name: formData.get("name"),
+      username: formData.get("username"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
+    const response = await fetch("/api/auth/sign-up", {
+      method: "POST",
+      body: JSON.stringify(dto),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      let message = "خطای غیر منتظره رخ داد.";
+
+      if ("error" in result) {
+        message = result.error;
+      }
+
+      toast.error(message)
+      return;
+    }
+
+    toast.success("ثبت نام با موفقیدت انجام شد.");
   };
 
   return (

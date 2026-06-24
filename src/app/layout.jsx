@@ -2,9 +2,9 @@ import { Vazirmatn } from "next/font/google";
 
 import HeaderComponent from "@/components/header/header.component";
 import FooterComponent from "@/components/footer/footer.component";
+import ToasterComponent from "@/components/toaster/toaster.component";
 
 import "@/styles/typography.css";
-
 import "./globals.css";
 
 const vazirmatn = Vazirmatn({
@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
           نوبت دهی پزشکی، سامانه نوبت دهی اینترنتی بیمارستان و پزشکان
         </p>
         <FooterComponent />
+        <ToasterComponent />
       </body>
     </html>
   );

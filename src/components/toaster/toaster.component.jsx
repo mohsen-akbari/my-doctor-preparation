@@ -1,10 +1,6 @@
-import { ReactElement } from "react";
+import { Bounce, ToastContainer } from "react-toastify";
 
-import { Bounce, ToastContainer, ToastContainerProps } from "react-toastify";
-
-type Props = Partial<ToastContainerProps>;
-
-export default function ToasterComponent(props: Props): ReactElement {
+export default function ToasterComponent(props) {
   return (
     <ToastContainer
       position="bottom-right"
