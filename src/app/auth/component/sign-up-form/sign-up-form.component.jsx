@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import signUpImage from "@/assets/image/sign-up.webp";
 
@@ -20,6 +21,8 @@ import MingcuteMailLine from "@/icons/MingcuteMailLine";
 import styles from "@/app/auth/styles/auth-form.module.css";
 
 export default function SignUpFormComponent() {
+  const router = useRouter();
+
   const formRef = useRef(null);
 
   const formSubmitHandler = async (e) => {
@@ -48,6 +51,7 @@ export default function SignUpFormComponent() {
     }
 
     formRef.current.reset();
+    router.push("/dashboard");
   };
 
   return (

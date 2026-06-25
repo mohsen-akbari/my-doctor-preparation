@@ -4,6 +4,7 @@ import { useRef } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import signInImage from "@/assets/image/sign-in.webp";
 
@@ -19,6 +20,8 @@ import MingcuteUser3Line from "@/icons/MingcuteUser3Line";
 import styles from "@/app/auth/styles/auth-form.module.css";
 
 export default function SignInFormComponent() {
+  const router = useRouter();
+
   const formRef = useRef(null);
 
   const formSubmitHandler = async (e) => {
@@ -45,6 +48,7 @@ export default function SignInFormComponent() {
     }
 
     formRef.current.reset();
+    router.push("/dashboard");
   };
 
   return (

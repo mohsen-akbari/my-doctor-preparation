@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
 
-import { parseBody, wrapWithTryCatch } from "@/utils/api.utils";
+import { parseBody, setAuthCookie, wrapWithTryCatch } from "@/utils/api.utils";
 
 export async function POST(request) {
   return wrapWithTryCatch(async () => {
@@ -30,6 +30,8 @@ export async function POST(request) {
     }
 
     await prisma.user.create({ data: body });
+
+    await setAuthCookie();
 
     return NextResponse.json({ data: null }, { status: 201 });
   });
