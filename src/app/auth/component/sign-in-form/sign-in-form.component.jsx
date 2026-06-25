@@ -12,6 +12,8 @@ import CardComponent from "@/components/card/card.component";
 import NormalInputComponent from "@/components/normal-input/normal-input.component";
 import PasswordInputComponent from "@/components/password-input/password-input.component";
 
+import { fetchWithToast } from "@/utils/fetch-utils";
+
 import MingcuteUser3Line from "@/icons/MingcuteUser3Line";
 
 import styles from "@/app/auth/styles/auth-form.module.css";
@@ -21,6 +23,28 @@ export default function SignInFormComponent() {
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const dto = {
+      username: formData.get("username"),
+      password: formData.get("password"),
+    };
+
+    const result = await fetchWithToast(
+      "/api/auth/sign-in",
+      {
+        method: "POST",
+        body: JSON.stringify(dto),
+      },
+      "خوش آمدید.",
+    );
+
+    if (result.error) {
+      return;
+    }
+
+    formRef.current.reset();
   };
 
   return (
