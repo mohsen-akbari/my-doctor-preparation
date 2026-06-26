@@ -57,6 +57,11 @@ export async function setAuthCookie() {
   });
 }
 
+export async function removeAuthCookie() {
+  const cookieStore = cookies();
+  cookieStore.delete(process.env.TOKEN_KEY);
+}
+
 export async function isSignedIn(request) {
   const token = request.cookies.get(process.env.TOKEN_KEY)?.value;
 
