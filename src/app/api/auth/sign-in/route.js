@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 import { parseBody, setAuthCookie, wrapWithTryCatch } from "@/utils/api.utils";
+import { comparePassword } from "@/utils/bcrypt.utils";
 
 export async function POST(request) {
   return wrapWithTryCatch(async () => {
@@ -23,7 +24,7 @@ export async function POST(request) {
       );
     }
 
-    if (body.password !== foundUser.password) {
+    if (!(await comparePassword(body.password, foundUser.password))) {
       return NextResponse.json(
         { error: "نام کاربری یا رمز عبور اشتباه است." },
         { status: 401 },

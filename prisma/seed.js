@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
@@ -13,8 +14,10 @@ const users = [
 
 export async function main() {
   for (const user of users) {
-    await prisma.user.create({ data: user });
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(user.password, salt);
+    await prisma.user.create({ data: { ...user, password: hashedPassword } });
   }
 }
 
-main().then(() => console.log("Done!"));    
+main().then(() => console.log("Done!"));

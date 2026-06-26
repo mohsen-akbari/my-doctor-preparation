@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 import { parseBody, setAuthCookie, wrapWithTryCatch } from "@/utils/api.utils";
+import { hashPassword } from "@/utils/bcrypt.utils";
 
 export async function POST(request) {
   return wrapWithTryCatch(async () => {
@@ -29,7 +30,8 @@ export async function POST(request) {
       return NextResponse.json({ error: "ایمیل تکراری است." }, { status: 400 });
     }
 
-    await prisma.user.create({ data: body });
+    const hashedPassword = await hashPassword(body.password);
+    await prisma.user.create({ data: { ...body, password: hashedPassword } });
 
     await setAuthCookie();
 
