@@ -56,3 +56,19 @@ export async function setAuthCookie() {
     maxAge: 3 * 24 * 3600,
   });
 }
+
+export async function isSignedIn(request) {
+  const token = request.cookies.get(process.env.TOKEN_KEY)?.value;
+
+  if (!token) {
+    return false;
+  }
+
+  try {
+    await jose.jwtVerify(token, secret);
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
