@@ -1,17 +1,17 @@
 import React, { Suspense } from "react";
 
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import MingcuteLocationLine from "@/icons/MingcuteLocationLine";
 import MingcuteStarFill from "@/icons/MingcuteStarFill";
 
 import { doctors } from "@/mock/doctors";
 
-import styles from "./page.module.css";
-
 import BriefComponent from "./brief.component";
+
+import styles from "./page.module.css";
 
 export default async function Page({ params }) {
   const doctor = await getDoctor(params.id);

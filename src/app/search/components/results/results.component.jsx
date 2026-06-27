@@ -2,13 +2,13 @@
 
 import { useContext } from "react";
 
-import Link from "next/link";
 import Image from "next/image";
-
-import MingcuteStarFill from "@/icons/MingcuteStarFill";
-import MingcuteLocationLine from "@/icons/MingcuteLocationLine";
+import Link from "next/link";
 
 import { DoctorsContext } from "@/app/search/providers/doctors/doctors.provider";
+
+import MingcuteLocationLine from "@/icons/MingcuteLocationLine";
+import MingcuteStarFill from "@/icons/MingcuteStarFill";
 
 import styles from "./results.module.css";
 

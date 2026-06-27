@@ -1,7 +1,3 @@
-import GlobalSearchBoxComponent from "@/components/global-search-box/global-search-box.component";
-
-import { doctors } from "@/mock/doctors";
-
 import AppointmentFilterComponent from "@/app/search/components/appointment-filter/appointment-filter.component";
 import DegreeFilterComponent from "@/app/search/components/degree-filter/degree-filter.component";
 import ExpertiseFilterComponent from "@/app/search/components/expertise-filter/expertise-filter.component";
@@ -10,9 +6,12 @@ import GenderFilterComponent from "@/app/search/components/gender-filter/gender-
 import ResultsComponent from "@/app/search/components/results/results.component";
 import SortComponent from "@/app/search/components/sort/sort.component";
 import StatsComponent from "@/app/search/components/stats/stats.component";
-
-import FiltersProvider from "@/app/search/providers/filters/filters.provider";
 import DoctorsProvider from "@/app/search/providers/doctors/doctors.provider";
+import FiltersProvider from "@/app/search/providers/filters/filters.provider";
+
+import GlobalSearchBoxComponent from "@/components/global-search-box/global-search-box.component";
+
+import { doctors } from "@/mock/doctors";
 
 import styles from "./page.module.css";
 

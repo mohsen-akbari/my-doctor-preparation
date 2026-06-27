@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 
 import clsx from "clsx";
 
-import styles from "./header.module.css";
 import { ButtonLinkComponent } from "../button/button.component";
+
+import styles from "./header.module.css";
 
 export default function HeaderComponent() {
   const pathname = usePathname();

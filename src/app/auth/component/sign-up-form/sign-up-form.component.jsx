@@ -12,11 +12,12 @@ import { ButtonComponent } from "@/components/button/button.component";
 import CardComponent from "@/components/card/card.component";
 import NormalInputComponent from "@/components/normal-input/normal-input.component";
 import PasswordInputComponent from "@/components/password-input/password-input.component";
-import { fetchWithToast } from "@/utils/fetch-utils";
 
 import MingcuteIncognitoModeLine from "@/icons/MingcuteIncognitoModeLine";
-import MingcuteUser3Line from "@/icons/MingcuteUser3Line";
 import MingcuteMailLine from "@/icons/MingcuteMailLine";
+import MingcuteUser3Line from "@/icons/MingcuteUser3Line";
+
+import { fetchWithToast } from "@/utils/fetch-utils";
 
 import styles from "@/app/auth/styles/auth-form.module.css";
 

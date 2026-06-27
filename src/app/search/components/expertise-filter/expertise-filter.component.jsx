@@ -2,9 +2,9 @@
 
 import { useContext } from "react";
 
-import CardComponent from "@/components/card/card.component";
-
 import { FiltersContext } from "@/app/search/providers/filters/filters.provider";
+
+import CardComponent from "@/components/card/card.component";
 
 import styles from "./expertise-filter.module.css";
 
