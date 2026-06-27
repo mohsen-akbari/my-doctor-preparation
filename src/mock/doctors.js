@@ -1,4 +1,3 @@
-
 /* You can scrape search api using this code
 temp1.map((x) => ({
   id: x.id,
