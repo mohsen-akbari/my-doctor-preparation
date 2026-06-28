@@ -77,7 +77,7 @@ export async function extractUserId(request) {
     if (!claims.sub) {
       return null;
     }
-    
+
     return claims.sub;
   } catch (error) {
     console.log(error);
