@@ -9,7 +9,7 @@ import { fetchWithToast } from "@/utils/fetch-utils";
 import styles from "./sign-out-button.module.css";
 
 export default function SignOutButtonComponent({ className }) {
-  const router = useRouter;
+  const router = useRouter();
 
   const signOutButtonClickHandler = async () => {
     const result = await fetchWithToast(
@@ -24,7 +24,7 @@ export default function SignOutButtonComponent({ className }) {
       return;
     }
 
-    router.push("/");
+    await router.push("/");
   };
   return (
     <div className={styles["sign-out-button"]}>
