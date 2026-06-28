@@ -31,7 +31,7 @@ export async function POST(request) {
       );
     }
 
-    await setAuthCookie();
+    await setAuthCookie(foundUser.id);
 
     return NextResponse.json({ data: null }, { status: 200 });
   });

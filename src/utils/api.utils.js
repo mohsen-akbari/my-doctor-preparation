@@ -41,10 +41,11 @@ export async function wrapWithTryCatch(callback) {
   }
 }
 
-export async function setAuthCookie() {
+export async function setAuthCookie(userId) {
   const cookieStore = cookies();
 
   const token = await new jose.SignJWT()
+    .setSubject(userId)
     .setProtectedHeader({ alg })
     .setIssuedAt()
     .setExpirationTime("3d")
@@ -63,18 +64,23 @@ export async function removeAuthCookie() {
   cookieStore.delete(process.env.TOKEN_KEY);
 }
 
-export async function isSignedIn(request) {
+export async function extractUserId(request) {
   const token = request.cookies.get(process.env.TOKEN_KEY)?.value;
 
   if (!token) {
-    return false;
+    return null;
   }
 
   try {
     await jose.jwtVerify(token, secret);
-    return true;
+    const claims = jose.decodeJwt(token);
+    if (!claims.sub) {
+      return null;
+    }
+    
+    return claims.sub;
   } catch (error) {
     console.log(error);
-    return false;
+    return null;
   }
 }
