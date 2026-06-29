@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
+
+import Loading from "@/app/loading";
 
 import { ButtonComponent } from "@/components/button/button.component";
 import CardComponent from "@/components/card/card.component";
@@ -16,25 +18,33 @@ import { fetchWithToast } from "@/utils/fetch-utils";
 import styles from "./profile-form.module.css";
 
 export default function ProfileFormComponent() {
-  const formRef = useRef(null);
+  const [values, setValues] = useState({});
+  const [status, setStatus] = useState("pending");
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const result = await fetchWithToast("/api/dashboard/profile");
+
+      if (result.error) {
+        setStatus("error");
+        return;
+      }
+
+      setValues(result.data);
+      setStatus("success");
+    };
+
+    fetchProfile().then();
+  }, []);
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
-    const dto = {
-      name: formData.get("name"),
-      username: formData.get("username"),
-      email: formData.get("email"),
-      password: formData.get("password"),
-    };
 
     const result = await fetchWithToast(
       "/api/dashboard/profile",
       {
         method: "PATCH",
-        body: JSON.stringify(dto),
+        body: JSON.stringify(values),
       },
       "ویرایش با موفقیت انجام شد.",
     );
@@ -43,34 +53,58 @@ export default function ProfileFormComponent() {
       return;
     }
   };
+
+  if (status === "pending") {
+    return <Loading />;
+  }
+
+  if (status === "error") {
+    return <h1>بد شد که!</h1>;
+  }
   return (
     <CardComponent className={styles["profile-form"]}>
       <h1>ویرایش پروفایل</h1>
-      <form ref={formRef} onSubmit={formSubmitHandler}>
+      <form onSubmit={formSubmitHandler}>
         <NormalInputComponent
           label="نام و نام خانوادگی"
           type="text"
           name="name"
           prefixIcon={<MingcuteIncognitoModeLine />}
+          value={values.name}
+          onChange={(e) =>
+            setValues((old) => ({ ...old, name: e.target.value }))
+          }
         />
         <NormalInputComponent
           label="نام کاربری"
           type="text"
           name="username"
           prefixIcon={<MingcuteUser3Line />}
+          value={values.username}
+          onChange={(e) =>
+            setValues((old) => ({ ...old, username: e.target.value }))
+          }
         />
         <NormalInputComponent
           label="ایمیل"
           type="email"
           name="email"
           prefixIcon={<MingcuteMailLine />}
+          value={values.email}
+          onChange={(e) =>
+            setValues((old) => ({ ...old, email: e.target.value }))
+          }
         />
         <PasswordInputComponent
           label="رمز عبور"
           name="password"
           autoComplete="new-password"
+          value={values.password}
+          onChange={(e) =>
+            setValues((old) => ({ ...old, password: e.target.value }))
+          }
         />
-        <ButtonComponent variant="primary">ثبت‌نام</ButtonComponent>
+        <ButtonComponent variant="primary">ذخیره</ButtonComponent>
       </form>
     </CardComponent>
   );
